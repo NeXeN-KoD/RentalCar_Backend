@@ -5,6 +5,7 @@ import abd.rc_appv2.repository.UtilisateurRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class UtilisateurService {
@@ -15,15 +16,25 @@ public class UtilisateurService {
         this.utilisateurRepository = utilisateurRepository;
     }
 
-    public Utilisateur saveUtilisateur(Utilisateur utilisateur) {
+
+    public Utilisateur save(Utilisateur utilisateur) {
         return utilisateurRepository.save(utilisateur);
     }
 
-    public Utilisateur getByEmail(String email) {
+    public Optional<Utilisateur> findById(Long id) {
+        return utilisateurRepository.findById(id);
+    }
+
+    public Utilisateur findByEmail(String email) {
         return utilisateurRepository.findByEmail(email).orElse(null);
     }
 
-    public List<Utilisateur> getAll() {
+    public List<Utilisateur> findAll() {
         return utilisateurRepository.findAll();
     }
+
+    public void delete(Long id) {
+        utilisateurRepository.deleteById(id);
+    }
 }
+
