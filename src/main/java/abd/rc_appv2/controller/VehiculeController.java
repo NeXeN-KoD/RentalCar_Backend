@@ -10,7 +10,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Optional;
 import java.util.stream.Collectors;
 
 @RestController
@@ -27,6 +26,11 @@ public class VehiculeController {
     @GetMapping
     public List<Vehicule> getAll() {
         return vehiculeRepository.findAll();
+    }
+
+    @GetMapping("/disponibles")
+    public List<Vehicule> getVehiculesDisponibles() {
+        return vehiculeRepository.findByStatut("DISPONIBLE");
     }
 
     @PostMapping
@@ -48,6 +52,8 @@ public class VehiculeController {
                     v.setPrixParJour(updated.getPrixParJour());
                     v.setStatut(updated.getStatut());
 
+                    v.setPhotoUrl(updated.getPhotoUrl());
+
                     if (updated.getCategorie() != null) {
                         Categorie cat = categorieRepository.findById(updated.getCategorie().getId()).orElse(null);
                         v.setCategorie(cat);
@@ -57,6 +63,7 @@ public class VehiculeController {
                 })
                 .orElse(ResponseEntity.notFound().build());
     }
+
 
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> delete(@PathVariable Long id) {

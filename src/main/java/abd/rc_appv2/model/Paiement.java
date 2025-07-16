@@ -1,5 +1,7 @@
 package abd.rc_appv2.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -23,5 +25,8 @@ public class Paiement {
     private Date datePaiement;
 
     @OneToOne
+    @JoinColumn(name = "reservation_id")
+    @JsonBackReference
     private Reservation reservation;
+
 }

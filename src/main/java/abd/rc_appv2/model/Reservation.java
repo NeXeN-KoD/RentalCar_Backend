@@ -1,5 +1,7 @@
 package abd.rc_appv2.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -29,4 +31,9 @@ public class Reservation {
 
     @ManyToOne
     private Vehicule vehicule;
+
+    @OneToOne(mappedBy = "reservation", cascade = CascadeType.ALL)
+    @JsonManagedReference
+    private Paiement paiement;
+
 }

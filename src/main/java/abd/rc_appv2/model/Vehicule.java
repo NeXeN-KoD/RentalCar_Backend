@@ -20,12 +20,13 @@ public class Vehicule {
     private String immatriculation;
     private double prixParJour;
     private String statut; // ex: DISPONIBLE, EN_LOCATION
+    @Column(name = "photo_url")
+    private String photoUrl;
+
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "categorie_id")
     private Categorie categorie;
-
-
 
 
 }
