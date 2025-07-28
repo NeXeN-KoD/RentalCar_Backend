@@ -1,6 +1,5 @@
 package abd.rc_appv2.model;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.*;
@@ -23,7 +22,7 @@ public class Reservation {
     @Temporal(TemporalType.DATE)
     private Date dateFin;
 
-    private String statut; // CONFIRMEE, ANNULEE, TERMINEE
+    private String statut;
     private double totalPrix;
 
     @ManyToOne
